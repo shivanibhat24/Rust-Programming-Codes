@@ -1,0 +1,11 @@
+[package]
+name = "secret_taint"
+version = "0.1.0"
+edition = "2021"
+authors = ["Claude"]
+description = "Compiler-grade secret taint tracking for Rust"
+license = "MIT"
+
+[dependencies]
+
+[dev-dependencies]
