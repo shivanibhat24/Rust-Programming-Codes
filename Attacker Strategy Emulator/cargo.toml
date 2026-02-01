@@ -1,0 +1,90 @@
+[package]
+name = "attacker-strategy-emulator"
+version = "0.1.0"
+edition = "2021"
+authors = ["Shivani Bhat"]
+description = "Game-theoretic attacker strategy emulation with ML-based adaptive adversaries"
+license = "MIT"
+
+[dependencies]
+# Linear algebra and numerical computing
+ndarray = { version = "0.15", features = ["serde"] }
+ndarray-rand = "0.14"
+ndarray-linalg = { version = "0.16", features = ["openblas-static"] }
+nalgebra = "0.32"
+
+# Machine Learning
+linfa = "0.7"
+linfa-nn = "0.7"
+smartcore = { version = "0.3", features = ["serde"] }
+rand = "0.8"
+rand_distr = "0.4"
+
+# Graph algorithms for network modeling
+petgraph = { version = "0.6", features = ["serde-1"] }
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+futures = "0.3"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+bincode = "1.3"
+
+# CLI and output
+clap = { version = "4", features = ["derive"] }
+colored = "2"
+indicatif = "0.17"
+tabled = "0.14"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Plotting (for visualization)
+plotters = { version = "0.3", optional = true }
+plotters-svg = { version = "0.3", optional = true }
+
+# HTTP server for API
+axum = { version = "0.7", optional = true }
+tower = { version = "0.4", optional = true }
+tower-http = { version = "0.5", features = ["cors"], optional = true }
+
+# Optimization
+rayon = "1.8"
+
+[dev-dependencies]
+criterion = "0.5"
+proptest = "1"
+approx = "0.5"
+
+[features]
+default = ["visualization", "api"]
+visualization = ["plotters", "plotters-svg"]
+api = ["axum", "tower", "tower-http"]
+
+[[example]]
+name = "basic_game"
+path = "examples/basic_game.rs"
+
+[[example]]
+name = "ml_training"
+path = "examples/ml_training.rs"
+
+[[example]]
+name = "full_simulation"
+path = "examples/full_simulation.rs"
+
+[[bench]]
+name = "game_theory_bench"
+harness = false
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
