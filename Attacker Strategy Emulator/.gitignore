@@ -1,0 +1,40 @@
+# Rust
+/target/
+**/*.rs.bk
+*.pdb
+Cargo.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Output files
+*.json
+*.csv
+*.log
+simulation_results.*
+
+# Documentation
+/doc/
+*.html
+
+# Temporary files
+/tmp/
+/temp/
+*.tmp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python (if used for analysis)
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+.venv/
