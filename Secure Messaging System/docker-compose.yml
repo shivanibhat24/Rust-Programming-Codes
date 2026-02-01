@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  secure-messenger:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - messenger-data:/data
+    environment:
+      - DATABASE_URL=sqlite:/data/messenger.db
+      - BIND_ADDRESS=0.0.0.0:3000
+      - RUST_LOG=secure_messenger=info,tower_http=info
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  messenger-data:
+    driver: local
