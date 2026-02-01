@@ -603,6 +603,3 @@ sudo systemctl status postgresql
 # Check logs
 sudo tail -f /var/log/postgresql/postgresql-14-main.log
 ```
-- Email: support@yourdomain.com
-- On-call: +1-XXX-XXX-XXXX
-- Slack: #messenger-ops
